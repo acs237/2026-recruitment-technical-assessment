@@ -43,7 +43,23 @@ def parse():
 # [TASK 1] ====================================================================
 # Takes in a recipeName and returns it in a form that 
 def parse_handwriting(recipeName: str) -> Union[str | None]:
-	# TODO: implement me
+	# replacing hyphens and underscores with whitespace
+	recipeName = re.sub(r'[-_]', ' ', recipeName)
+
+	# contain only letter and whitespaces
+	recipeName = re.sub(r'[^a-zA-Z\s]', '', recipeName)
+
+	# capitalise the first letter of each word
+	recipeName = recipeName.title()
+
+	# only one whitespace between words, remove leading and trailing whitespace
+	recipeName = re.sub(r'\s+', ' ', recipeName)
+	recipeName = recipeName.strip()
+
+	# if the string is empty, return None
+	if len(recipeName) == 0:
+		return None
+
 	return recipeName
 
 
